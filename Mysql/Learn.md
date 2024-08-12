@@ -130,7 +130,7 @@ DELETE FROM 表名 [WHERE 条件];
 ```
 
 ## DQL：Data Query Language
-DQL语句执行顺序：FROM ---> wHERE ---> GROUP BY ---> SELECT ---> ORDER BY ---> LIMIT
+DQL语句执行顺序：FROM---JOIN---ON---WHERE---GROUP B---HAVING---SELECT---ORDER BY---LIMIT
 ```sql
 SELECT [DISTINCT(去除重复)] [聚合函数] 字段列表 [AS 字段别名] FROM 表名列表 WHERE 条件列表 GROUP BY 分组字段列表 HAVING 分组后条件列表 ORDER BY 排序字段列表 LIMIT 分页参数
 ```  
@@ -154,6 +154,7 @@ SELECT [DISTINCT(去除重复)] [聚合函数] 字段列表 [AS 字段别名] FR
 (5) sum(): 求和  
 
 3. 分组查询  
+GROUP BY 将一列同样的值划分为一组
 Where 和 Having的区别：  
 (1)判断时机不同: where是分组之前进行过滤， having是对分组之后的结果进行过滤  
 (2)判断条件不同: where不能对聚合函数进行判断，而having可以  
