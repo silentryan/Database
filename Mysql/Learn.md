@@ -101,6 +101,10 @@ DROP TABLE [IF EXISTS] 表名;
 
 -- 删除该表，重新创建该表---> 注意所有数据全部删除
 TRUNCATE TABLE 表名;
+
+
+-- 查看数据库默认字符集
+SHOW VARIABLES LIKE 'character%';
 ```
 
 
@@ -243,6 +247,13 @@ REVOKE 权限列表 ON 数据库名.表名 FROM '用户名'@'主机名';
 - CASE WHEN [val1] THEN [res1]...ELSE [default] END ：如果val1 为true,返回res1，否则返回else default默认值
 - CASE [expr] WHEN [val1] THEN [res1]...ELSE [default] END ：如果expr == val1,返回res1，否则返回else default默认值
 
+6. 聚合函数 : 将一列数据作为一个整体，进行纵向计算. null 值不参与聚合函数计算  
+- count(): 统计数量  
+- max(): 最大值  
+- min(): 最小值  
+- avg(): 平均值  
+- sum(): 求和 
+
 
 ## 约束 Constrsaint
 约束是作用表中字段上的规则，用于限制存储在表中的数据。用于保证数据库中数据的正确、有效性和完整性。
@@ -300,10 +311,10 @@ ALTER table 表名 add constraint 外键名称 foreign key (外键字段) refere
 
 ```sql
 --左外连接语法
-SELECT 字段 FROM 左表 LEFT [OUTER] JOIN 右表;
+SELECT 字段 FROM 左表 LEFT [OUTER] JOIN 右表 ON 连接条件;
 
 -- 右外连接语法
-SELECT 字段 FROM 右表 RIGHT [OUTER] JOIN 左表;
+SELECT 字段 FROM 右表 RIGHT [OUTER] JOIN 左表 ON 连接条件;
 
 -- 自连接查询
 SELECT 字段 FROM 表A 别名A JOIN 表A 别名B ON 条件;
@@ -323,10 +334,10 @@ SELECT 字段 FROM 表A WHERE 列= (SELECT 列 FROM 表B);
 事务是一组操作的集合。他是一个不可分割的工作单位，事务会把所有的操作作为一个整体一起向系统提交或撤销操作。也就是说这些组合在一起的操作要么一起成功，要么一起失败。
 
 1. 事务的四大特性-ACID
-- 原子性: 事务是不可分割的最小操作单元
-- 一致性：事务完成时，必须所有的数据都保持一致状态
-- 隔离性：数据库系统提供的隔离机制。保证事务在不受外部并发操作影响的独立环境下运行
-- 持久性： 事务一旦提交或回滚，它对数据库中的数据的改变是永久的
+- 原子性 Atomicity: 事务是不可分割的最小操作单元
+- 一致性 Consistency：事务完成时，必须所有的数据都保持一致状态
+- 隔离性 Isolation：数据库系统提供的隔离机制。保证事务在不受外部并发操作影响的独立环境下运行
+- 持久性 Durability： 事务一旦提交或回滚，它对数据库中的数据的改变是永久的
 
 
 2. 并发事务问题
